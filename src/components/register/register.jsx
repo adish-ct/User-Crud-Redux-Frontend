@@ -39,32 +39,39 @@ function Register() {
   }
 
   return (
-    <div className="maindiv">
-      <div style={{
+    <div className="maindiv text-center">
+      <div className="text-center" style={{
         display: 'block',
         width: 500,
         padding: 30
       }}>
-        <h4>Login</h4>
-        <Form onSubmit={(e) => signupform(e)}>
-          <Form.Group className="py-2">
-            <Form.Control type="text" name="username" placeholder="Username" />
-          </Form.Group>
-          <Form.Group className="py-2">
-            <Form.Control type="email" name="email" placeholder="Email" />
-          </Form.Group>
-          <Form.Group className="py-2">
-            <Form.Control type="password" name="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group className="py-2">
-            <Form.Control type="password" name="password1" placeholder="Confirm Password" />
-          </Form.Group>
-          <Form.Group></Form.Group>
-          <Button variant="primary" className="my-4" type="submit">
-            submit
-          </Button>
-        </Form>
-        <p className="text-center text-muted mt-4 mb-0">already have an account <Link to="/login" className="fw-bold text-body"><u>login here</u></Link></p>
+        <div className="card custom-card">
+          <h4 className="text-center p-3">Signup</h4>
+          <Form onSubmit={(e) => signupform(e)}>
+            <Form.Group className="py-2">
+              <Form.Control type="text" name="username" placeholder="Username" />
+            </Form.Group>
+            <Form.Group className="py-2">
+              <Form.Control type="email" name="email" placeholder="Email" />
+            </Form.Group>
+            <Form.Group className="py-2">
+              <Form.Control type="password" name="password" placeholder="Password" />
+            </Form.Group>
+            <Form.Group className="py-2">
+              <Form.Control type="password" name="password1" placeholder="Confirm Password" />
+            </Form.Group>
+            <Form.Group></Form.Group>
+            <Button className="my-4 custom-button" type="submit">
+              submit
+            </Button>
+          </Form>
+          <div className="login-footer">
+            <p className="text-center text-muted mb-0">already have an account </p>
+            <Link to="/login" className="fw-bold login-link">login here</Link>
+          </div>
+
+        </div>
+
       </div>
     </div>
   )

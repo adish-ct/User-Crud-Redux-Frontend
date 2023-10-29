@@ -1,8 +1,11 @@
-*{
-    padding: 0%;
-    margin: 0%;
+* {
+  padding: 0%;
+  margin: 0%;
 }
-.navbar{
-    width: 100%;
-    height: 60px;
+.navbar {
+  width: 100%;
+  height: 60px;
+}
+.profile-link {
+  cursor: pointer;
 }

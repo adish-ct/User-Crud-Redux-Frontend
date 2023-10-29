@@ -48,8 +48,8 @@ function Login() {
 
   return (
     <div className="maindiv">
-      <div className="card">
-        <div style={{ display: "block", width: 500, padding: 30 }}>
+      <div >
+        <div className="card custom-card" style={{ display: "block", width: 400, padding: 30 }}>
           <h4>Login</h4>
           <Form onSubmit={(e) => signupSubmit(e)}>
             <Form.Group className="py-4">
@@ -62,7 +62,7 @@ function Login() {
                 placeholder="Enter your password"
               />
             </Form.Group>
-            <Button variant="primary" className="my-4" type="submit">
+            <Button className="my-4 login-button" type="submit">
               Submit
             </Button>
             <div className="login-footer-item mt-4">

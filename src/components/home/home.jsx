@@ -3,8 +3,8 @@ import Menubar from '../Navbar/Navbar'
 function Home() {
   return (
     <div>
-     <Menubar heading={'Home page'}/>
-     <h1>Home Page</h1>
+      <Menubar heading={'AUTH-SITE'} />
+      <h1></h1>
     </div>
   )
 }
