@@ -1,0 +1,38 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.maindiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-footer-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.sign-up {
+  color: rgb(17, 115, 9);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.sign-up:hover {
+  color: rgb(212, 125, 4);
+  transform: translateY(-5px);
+  /* other styles for hover state, if needed */
+}
+.card {
+  /* other styles for your .card class */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* adjust the values as needed */
+  transition: box-shadow 0.3s ease; /* smooth transition for box-shadow */
+}
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* adjust the values for hover effect */
+  /* other styles for hover state, if needed */
+}
