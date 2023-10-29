@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux'; // Import useDispatch from react-redux
 import { baseUrl } from "../../api/api";
 import { getLocal } from "../../healpers/auth";
+import { setUser } from '../actions/userActions'; // Import setUser action
 
 // Css and bootstrap
 import "./login.css";
@@ -9,11 +11,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 function Login() {
+  const dispatch = useDispatch(); // Add useDispatch from react-redux
   const history = useNavigate();
   const response = getLocal();
 
   useEffect(() => {
     if (response) {
+      // User is already authenticated, redirect to home
       history("/");
     }
   }, [response, history]);
@@ -21,28 +25,39 @@ function Login() {
   const signupSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`${baseUrl}token/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: e.target.email.value,
-        password: e.target.password.value,
-      }),
-    });
+    try {
+      const response = await fetch(`${baseUrl}token/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: e.target.email.value,
+          password: e.target.password.value,
+        }),
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      localStorage.setItem("authToken", JSON.stringify(data));
-      // You might also want to set an expiration time for the token
-      // localStorage.setItem("tokenExpiration", data.expires_at);
-      history("/");
-    } else {
-      if (response.status === 401) {
-        alert("User credentials mismatch");
+      if (response.ok) {
+        const data = await response.json();
+
+        // Dispatch the setUser action to update the user state in the Redux store
+        dispatch(setUser(data));
+
+        localStorage.setItem("authToken", JSON.stringify(data));
+        // You might also want to set an expiration time for the token
+        // localStorage.setItem("tokenExpiration", data.expires_at);
+
+        // Redirect to home after successful login
+        history("/");
       } else {
-        alert(`Error: ${response.statusText}`);
+        if (response.status === 401) {
+          alert("User credentials mismatch");
+        } else {
+          alert(`Error: ${response.statusText}`);
+        }
+        history("/login");
       }
-      history("/login");
+    } catch (error) {
+      console.error("Error during login:", error);
+      // Handle error as needed
     }
   };
 
@@ -68,7 +83,6 @@ function Login() {
             <div className="login-footer-item mt-4">
               <p className="text-center text-muted mb-0">
                 Don't have an account yet?
-
               </p>
               <Link to="/register" className="fw-bold sign-up nav-link">
                 Sign up
