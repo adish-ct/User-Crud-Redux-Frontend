@@ -197,7 +197,7 @@ function Admin() {
     };
 
     const searchUser = async (keyword) => {
-        if (!keyword === '') {
+        if (keyword !== '') {
             const request = await axios.get(`${baseUrl}user-list/?search=${keyword}`);
             setUsers(request.data);
         } else {
