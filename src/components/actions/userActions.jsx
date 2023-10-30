@@ -7,10 +7,19 @@ export const setUser = (user) => ({
     payload: user,
 });
 
-export const updateUser = (user) => ({
-    type: 'UPDATE_USER',
-    payload: user,
-});
+export const updateUser = (user) => {
+    return async (dispatch) => {
+        try {
+            // Your API call or logic here
+            console.log(user);
+            const response = await axios.put(`${baseUrl}user-detail/${user.userId}/`, user);
+            dispatch({ type: 'UPDATE_USER', payload: response.data });
+            return response.data
+        } catch (error) {
+            console.error('Error updating user:', error);
+        }
+    };
+};
 
 export const fetchUser = (userId) => {
     return async (dispatch) => {

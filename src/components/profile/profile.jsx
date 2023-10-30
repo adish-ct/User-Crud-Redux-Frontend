@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUser } from '../actions/userActions';
 import Menubar from '../Navbar/Navbar';
@@ -15,28 +16,30 @@ function Profile() {
     if (!token) {
       console.log("User not authenticated");
     } else {
-      // fetchUser is action return in userActions.jsx
       dispatch(fetchUser(decoded.user_id));
     }
-  }, [])
+  }, []);
+
   return (
     <div className="vh-100" style={{ backgroundColor: 'white' }}>
       <Menubar heading={'Profile'} />
-      <div>
-        <div className="flex-shrink-0">
-          {/* Render the user profile image here */}
-          <img
-            style={{ width: '180px', borderRadius: '10px' }}
-            src={user.profile_image ? user.profile_image : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp'}
-            alt='Profile'
-            fluid
-          />
-        </div>
-        <div className="flex-grow-1 ms-5 mt-5">
-          <h3>{user.username}</h3>
-          <p>{user.email}</p>
-          {/* Add more details if needed */}
-          <p>Senior Journalist</p>
+      <div className="card mt-4 mx-auto p-4" style={{ width: '400px' }}>
+        <div className="row g-0">
+          <div className="col-md-4">
+            <img
+              src={user.profile_image ? user.profile_image : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp'}
+              alt='Profile'
+              className="img-fluid rounded-start"
+            />
+          </div>
+          <div className="col-md-8">
+            <div className="card-body">
+              <h3 className="card-title">{user.username}</h3>
+              <p className="card-text">{user.email}</p>
+              <p className="card-text">Senior Journalist</p>
+              <Link to="/profile/edit" className="btn btn-primary">Edit Profile</Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

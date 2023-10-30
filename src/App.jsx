@@ -9,9 +9,10 @@ import Register from './components/register/register';
 import Admin from './components/admin/admin';
 import { PrivateRoute } from './components/PrivateRoute';
 import Profile from './components/profile/profile';
+import EditProfile from './components/profile/EditProfile';
 
 function App() {
-  console.log(store.getState());
+
   return (
     <Provider store={store}>
       <div>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
         </Routes>
       </div>
     </Provider>
